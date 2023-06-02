@@ -1,0 +1,17 @@
+# /home/ubuntu/anaconda3/envs/fanbo_pykeen/lib/python3.9/site-packages/pykeen/training/training_loop.py 
+from pykeen.pipeline import pipeline
+pipeline_result = pipeline(
+    model='RotatE',
+    dataset='WN18RR',
+    result_tracker='tensorboard',
+    training_loop='LCWA',
+    loss='BCEWithLogitsLoss',
+    stopper='early',
+    stopper_kwargs=dict(frequency=5, patience=2, relative_delta=0.002),
+    epochs=100,
+    dataset_kwargs=dict(
+        create_inverse_triples=True,
+    ))
+
+
+pipeline_result.save_to_directory('Wn18_rotae_100_epoch_base')
